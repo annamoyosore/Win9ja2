@@ -1,0 +1,29 @@
+<script type="module">
+import { db, CONFIG } from "../appwrite/config.js";
+import { subscribeToLobby } from "../services/realtime.js";
+
+async function load(){
+  const res = await db.listDocuments(
+    CONFIG.databaseId,
+    CONFIG.collections.lobby
+  );
+
+  render(res.documents);
+}
+
+function render(players){
+  document.getElementById("players").innerHTML =
+    players.map(p => `
+      <div>
+        ${p.name} - ₦${p.stake}
+        <button onclick="challenge('${p.userId}', ${p.stake})">
+          Play
+        </button>
+      </div>
+    `).join("");
+}
+
+subscribeToLobby(() => load());
+
+load();
+</script>
