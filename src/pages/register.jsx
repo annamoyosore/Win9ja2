@@ -26,7 +26,7 @@ export default function Register({ onSuccess }) {
       // 💰 Create wallet with bonus
       await db.createDocument(DB_ID, COLLECTIONS.WALLETS, "unique()", {
         userId: user.$id,
-        balance: 2000 // signup bonus
+        balance: 50 // signup bonus
       });
 
       alert("🎉 Account created! ₦2000 bonus added");
