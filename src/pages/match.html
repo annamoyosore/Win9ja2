@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Match Room</h2>
+
+<p id="info"></p>
+
+<button onclick="start()">Start Game</button>
+
+<script>
+const opp = localStorage.getItem("opp");
+const stake = localStorage.getItem("stake");
+
+info.innerText = "Opponent: " + opp + " | ₦" + stake;
+
+function start(){
+  location.href = "../game/WhotGame.jsx";
+}
+</script>
+
+</body>
+</html>
