@@ -13,112 +13,75 @@ body {
   text-align: center;
 }
 
-/* screens */
-.screen {
-  display: none;
-  padding-top: 100px;
+.container {
+  padding-top: 120px;
 }
 
-.active {
-  display: block;
-}
-
-/* UI */
 h1 {
-  color: gold;
   font-size: 42px;
+  color: gold;
+  text-shadow: 0 0 20px gold;
 }
 
-input {
-  display: block;
-  margin: 10px auto;
-  padding: 10px;
-  width: 220px;
-  border-radius: 8px;
-  border: none;
+p {
+  opacity: 0.7;
 }
 
 button {
+  display: block;
+  margin: 15px auto;
   width: 220px;
   padding: 12px;
-  margin: 10px;
   border: none;
   border-radius: 10px;
-  cursor: pointer;
   font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.loginBtn {
+button:hover {
+  transform: scale(1.05);
+}
+
+.login {
   background: gold;
+  color: black;
 }
 
-.registerBtn {
-  background: green;
+.register {
+  background: #22c55e;
   color: white;
 }
 
-.link {
-  background: transparent;
-  color: cyan;
+.footer {
+  margin-top: 50px;
+  font-size: 12px;
+  opacity: 0.5;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===================== -->
-<!-- HOME SCREEN -->
-<!-- ===================== -->
-<div id="home" class="screen active">
+<div class="container">
 
   <h1>🎮 WHOT GAME</h1>
-  <p>Stake • Play • Win</p>
+  <p>Stake • Play • Win Real Rewards</p>
 
-  <button class="loginBtn" onclick="show('login')">LOGIN</button>
-  <button class="registerBtn" onclick="alert('Add register screen later')">REGISTER</button>
+  <!-- ✅ NOW SAME FOLDER LINKS -->
+  <button class="login" onclick="window.location.href='login.html'">
+    LOGIN
+  </button>
 
-</div>
-
-<!-- ===================== -->
-<!-- LOGIN SCREEN -->
-<!-- ===================== -->
-<div id="login" class="screen">
-
-  <h1>LOGIN</h1>
-
-  <input id="email" placeholder="Email" />
-  <input id="password" placeholder="Password" type="password" />
-
-  <button class="loginBtn" onclick="login()">LOGIN</button>
-
-  <button class="link" onclick="show('home')">⬅ Back</button>
+  <button class="register" onclick="window.location.href='register.html'">
+    REGISTER
+  </button>
 
 </div>
 
-<!-- ===================== -->
-<!-- SCRIPT -->
-<!-- ===================== -->
-<script>
-function show(screen) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(screen).classList.add('active');
-}
-
-function login() {
-  const email = document.getElementById("email").value;
-  const pass = document.getElementById("password").value;
-
-  if (!email || !pass) {
-    alert("Fill all fields");
-    return;
-  }
-
-  alert("Login success (connect Appwrite later)");
-
-  // redirect to game later
-  // window.location.href = "dashboard.html";
-}
-</script>
+<div class="footer">
+  PvP Whot System • Appwrite Ready
+</div>
 
 </body>
 </html>
