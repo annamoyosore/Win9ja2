@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Dashboard</h2>
+
+<p id="user"></p>
+<p>Wallet: ₦<span id="bal">0</span></p>
+
+<button onclick="goLobby()">Join Lobby</button>
+<button onclick="goWallet()">Wallet</button>
+
+<script type="module">
+import { getUser } from "../appwrite/auth.js";
+import { getWallet } from "../appwrite/wallet.js";
+
+const u = await getUser();
+user.innerText = u.name;
+
+const w = await getWallet(u.$id);
+bal.innerText = w.documents[0]?.balance || 0;
+
+window.goLobby = () => location.href = "lobby.html";
+window.goWallet = () => location.href = "wallet.html";
+</script>
+
+</body>
+</html>
