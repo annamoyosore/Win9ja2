@@ -1,97 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Whot Game</title>
+<meta charset="UTF-8">
+<title>Whot Game</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: radial-gradient(circle, #0f172a, #000);
-      color: white;
-      text-align: center;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: radial-gradient(circle, #0f172a, #000);
+  color: white;
+  text-align: center;
+}
 
-    .container {
-      padding-top: 120px;
-    }
+/* screens */
+.screen {
+  display: none;
+  padding-top: 100px;
+}
 
-    h1 {
-      font-size: 42px;
-      color: gold;
-      text-shadow: 0 0 20px gold;
-    }
+.active {
+  display: block;
+}
 
-    p {
-      opacity: 0.7;
-    }
+/* UI */
+h1 {
+  color: gold;
+  font-size: 42px;
+}
 
-    button {
-      display: block;
-      margin: 15px auto;
-      width: 220px;
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-      font-size: 14px;
-    }
+input {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 220px;
+  border-radius: 8px;
+  border: none;
+}
 
-    button:hover {
-      transform: scale(1.05);
-    }
+button {
+  width: 220px;
+  padding: 12px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-    .login {
-      background: gold;
-      color: black;
-    }
+.loginBtn {
+  background: gold;
+}
 
-    .register {
-      background: #22c55e;
-      color: white;
-    }
+.registerBtn {
+  background: green;
+  color: white;
+}
 
-    .wallet {
-      background: #3b82f6;
-      color: white;
-    }
-
-    .footer {
-      margin-top: 50px;
-      font-size: 12px;
-      opacity: 0.5;
-    }
-  </style>
+.link {
+  background: transparent;
+  color: cyan;
+}
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- ===================== -->
+<!-- HOME SCREEN -->
+<!-- ===================== -->
+<div id="home" class="screen active">
 
   <h1>🎮 WHOT GAME</h1>
-  <p>Stake • Play • Win Real Rewards</p>
+  <p>Stake • Play • Win</p>
 
-  <!-- ✅ FIXED PATHS FOR YOUR STRUCTURE -->
-  <button class="login" onclick="location.href='login.html'">
-    LOGIN
-  </button>
-
-  <button class="register" onclick="location.href='register.html'">
-    REGISTER
-  </button>
-
-  <button class="wallet" onclick="location.href='./wallet.html'>
-    WALLET
-  </button>
-
-  <div class="footer">
-    PvP Whot Game System • Powered by Appwrite
-  </div>
+  <button class="loginBtn" onclick="show('login')">LOGIN</button>
+  <button class="registerBtn" onclick="alert('Add register screen later')">REGISTER</button>
 
 </div>
+
+<!-- ===================== -->
+<!-- LOGIN SCREEN -->
+<!-- ===================== -->
+<div id="login" class="screen">
+
+  <h1>LOGIN</h1>
+
+  <input id="email" placeholder="Email" />
+  <input id="password" placeholder="Password" type="password" />
+
+  <button class="loginBtn" onclick="login()">LOGIN</button>
+
+  <button class="link" onclick="show('home')">⬅ Back</button>
+
+</div>
+
+<!-- ===================== -->
+<!-- SCRIPT -->
+<!-- ===================== -->
+<script>
+function show(screen) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screen).classList.add('active');
+}
+
+function login() {
+  const email = document.getElementById("email").value;
+  const pass = document.getElementById("password").value;
+
+  if (!email || !pass) {
+    alert("Fill all fields");
+    return;
+  }
+
+  alert("Login success (connect Appwrite later)");
+
+  // redirect to game later
+  // window.location.href = "dashboard.html";
+}
+</script>
 
 </body>
 </html>
