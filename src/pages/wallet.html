@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Wallet</h2>
+
+<button onclick="fund()">Fund</button>
+<button onclick="withdraw()">Withdraw</button>
+
+<script>
+function fund(){
+  const amt = prompt("Amount");
+  location.href = "https://flutterwave.com/pay/YOUR_LINK?amount=" + amt;
+}
+
+function withdraw(){
+  const amt = prompt("Withdraw");
+  alert("Request sent");
+}
+</script>
+
+</body>
+</html>
