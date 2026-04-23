@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>Login</title>
+</head>
+
 <body>
 
 <h2>Login</h2>
 
-<input id="email" placeholder="Email"><br>
-<input id="pass" type="password" placeholder="Password"><br>
+<input id="email" placeholder="Email"><br><br>
+<input id="pass" type="password" placeholder="Password"><br><br>
 
 <button onclick="loginUser()">Login</button>
 
 <script type="module">
-import { login } from "../appwrite/auth.js";
+import { login } from "./appwrite/auth.js"; 
+// ✅ FIXED: same-level folder, no ../
 
 window.loginUser = async () => {
   const email = document.getElementById("email").value;
   const pass = document.getElementById("pass").value;
 
-  await login(email, pass);
-  location.href = "dashboard.html";
+  if (!email || !pass) {
+    alert("Fill all fields");
+    return;
+  }
+
+  try {
+    await login(email, pass);
+
+    // ✅ redirect after success
+    window.location.href = "dashboard.html";
+
+  } catch (err) {
+    alert("Login failed");
+    console.log(err);
+  }
 };
 </script>
 
