@@ -1,6 +1,6 @@
 export const APPWRITE_ENDPOINT = "https://cloud.appwrite.io/v1";
-export const PROJECT_ID = "YOUR_PROJECT_ID";
-export const DB_ID = "whotDB";
+export const PROJECT_ID = "69cb4e5c001651f6cfab";
+export const DB_ID = "69cb505d0015fbe8a669";
 
 export const COLLECTIONS = {
   WALLETS: "wallets",
