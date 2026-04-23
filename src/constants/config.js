@@ -8,7 +8,8 @@ export const COLLECTIONS = {
   TRANSACTIONS: "transactions"
 };
 
+// ⚠️ Keep admin wallet static (safe for production)
 export const ADMIN = {
-  WALLET_ID: localStorage.getItem("ADMIN_WALLET_ID") || "",
+  WALLET_ID: "", // set manually in admin panel or env later
   FEE_PERCENT: 0.10
 };
