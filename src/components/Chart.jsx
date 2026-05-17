@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import socket from "../socket";
 
 export default function Chart() {
 
@@ -7,11 +6,30 @@ export default function Chart() {
 
   useEffect(() => {
 
-    socket.on("price", (data) => {
-      setPrice(data.price);
-    });
+    async function fetchPrice() {
+      try {
+        const res = await fetch(
+          `https://api.twelvedata.com/price?symbol=EUR/USD&apikey=${import.meta.env.TWELVEDATA_API_KEY}`
+        );
 
-    return () => socket.off("price");
+        const data = await res.json();
+
+        if (data.price) {
+          setPrice(data.price);
+        }
+
+      } catch (err) {
+        console.log("Price fetch error:", err);
+      }
+    }
+
+    // initial fetch
+    fetchPrice();
+
+    // update every 3 seconds
+    const interval = setInterval(fetchPrice, 3000);
+
+    return () => clearInterval(interval);
 
   }, []);
 
@@ -21,4 +39,4 @@ export default function Chart() {
       <h1>{price}</h1>
     </div>
   );
-}
+      }
