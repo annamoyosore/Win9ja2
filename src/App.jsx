@@ -1,18 +1,33 @@
-import { useState } from "react";
-import GameDashboard from "./pages/GameDashboard";
-import WalletDashboard from "./pages/WalletDashboard";
+import { useState, useEffect } from "react";
+import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
+import { account } from "./appwrite/config";
 
 export default function App() {
-  const [page, setPage] = useState("game");
 
-  return (
-    <div>
-      <nav>
-        <button onClick={() => setPage("game")}>🎮 Game</button>
-        <button onClick={() => setPage("wallet")}>💰 Wallet</button>
-      </nav>
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-      {page === "game" ? <GameDashboard /> : <WalletDashboard />}
-    </div>
+  async function init() {
+    try {
+      const u = await account.get();
+      setUser(u);
+    } catch {
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    init();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+
+  return user ? (
+    <Dashboard setUser={setUser} />
+  ) : (
+    <Auth onLogin={init} />
   );
 }
